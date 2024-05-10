@@ -1,49 +1,43 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         TicketSystem ticketSystem = new TicketSystem();
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("\n1. Criar Ticket");
-            System.out.println("2. Exibir Tickets");
-            System.out.println("3. Atribuir Ticket");
-            System.out.println("4. Fechar Ticket");
-            System.out.println("5. Sair");
-
+            System.out.println("1. Adicionar ticket");
+            System.out.println("2. Ver ticket");
+            System.out.println("3. Sair");
             System.out.print("Escolha uma opção: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Limpar o buffer
+            int option = scanner.nextInt();
+            scanner.nextLine();
 
-            switch (choice) {
+            switch (option) {
                 case 1:
-                    System.out.print("Digite o título do ticket: ");
-                    String title = scanner.nextLine();
-                    System.out.print("Digite a descrição do ticket: ");
-                    String description = scanner.nextLine();
-                    ticketSystem.createTicket(title, description);
+                    System.out.print("Digite a descrição do problema: ");
+                    String issue = scanner.nextLine();
+                    Ticket ticket = new Ticket(issue);
+                    ticketSystem.addTicket(ticket);
+                    System.out.println("Ticket adicionado com ID: " + ticket.getId());
                     break;
                 case 2:
-                    ticketSystem.displayTickets();
+                    System.out.print("Digite o ID do ticket: ");
+                    int id = scanner.nextInt();
+                    Ticket existingTicket = ticketSystem.getTicket(id);
+                    if (existingTicket != null) {
+                        System.out.println("Ticket ID: " + existingTicket.getId());
+                        System.out.println("Problema: " + existingTicket.getIssue());
+                    } else {
+                        System.out.println("Ticket não encontrado.");
+                    }
                     break;
                 case 3:
-                    System.out.print("Digite o ID do ticket que deseja atribuir: ");
-                    int ticketId = scanner.nextInt();
-                    scanner.nextLine(); // Limpar o buffer
-                    System.out.print("Digite o nome do usuário para atribuir o ticket: ");
-                    String assignee = scanner.nextLine();
-                    ticketSystem.assignTicket(ticketId, assignee);
-                    break;
-                case 4:
-                    System.out.print("Digite o ID do ticket que deseja fechar: ");
-                    ticketId = scanner.nextInt();
-                    ticketSystem.closeTicket(ticketId);
-                    break;
-                case 5:
                     System.out.println("Saindo...");
                     scanner.close();
-                    return;
+                    System.exit(0);
                 default:
-                    System.out.println("Opção inválida. Por favor, escolha uma opção válida.");
+                    System.out.println("Opção inválida.");
             }
         }
     }
