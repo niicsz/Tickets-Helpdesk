@@ -3,15 +3,20 @@ public class Ticket {
     private int id;
     private String issue;
     private User user; 
-
     public Ticket(String issue, User user) { 
         this.id = ++count;
         this.issue = issue;
         this.user = user; 
-    }
 
     public int getId() {
         return id;
     }
 
-    public String
+    public String getIssue() {
+        return issue;
+    }
+
+    public User getUser() { 
+        return user;
+    }
+}
