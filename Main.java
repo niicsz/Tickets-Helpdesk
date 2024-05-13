@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -22,7 +21,7 @@ public class Main {
                 case 1:
                     System.out.print("Digite a descrição do problema: ");
                     String issue = scanner.nextLine();
-                    Ticket ticket = new Ticket(issue, user); // modificado para passar o User
+                    Ticket ticket = new Ticket(issue, user); 
                     ticketSystem.addTicket(ticket);
                     System.out.println(user.getName() + ", ticket adicionado com ID: " + ticket.getId());
                     break;
@@ -33,7 +32,7 @@ public class Main {
                     if (existingTicket != null) {
                         System.out.println("Ticket ID: " + existingTicket.getId());
                         System.out.println("Problema: " + existingTicket.getIssue());
-                        System.out.println("Aberto por: " + existingTicket.getUser().getName()); // novo: mostrar quem abriu o ticket
+                        System.out.println("Aberto por: " + existingTicket.getUser().getName()); 
                     } else {
                         System.out.println("Ticket não encontrado.");
                     }
