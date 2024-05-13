@@ -2,8 +2,13 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        TicketSystem ticketSystem = new TicketSystem();
         Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite seu nome: ");
+        String name = scanner.nextLine();
+        User user = new User(name);
+
+        TicketSystem ticketSystem = new TicketSystem();
 
         while (true) {
             System.out.println("1. Adicionar ticket");
@@ -19,7 +24,7 @@ public class Main {
                     String issue = scanner.nextLine();
                     Ticket ticket = new Ticket(issue);
                     ticketSystem.addTicket(ticket);
-                    System.out.println("Ticket adicionado com ID: " + ticket.getId());
+                    System.out.println(user.getName() + ", ticket adicionado com ID: " + ticket.getId());
                     break;
                 case 2:
                     System.out.print("Digite o ID do ticket: ");
